@@ -17,10 +17,10 @@ export default class Profile extends React.Component{
         return (
             <div>
                 <Header>个人中心</Header>
-                <div className="goChoose">
+                <Link  to="/city" className="goChoose"  onClick={()=>{this.handleClick()}}>
                     <div>所在城市</div>
-                    <Link to="/city" onClick={()=>{this.handleClick()}}>{this.props.city?this.props.city:"选择"}</Link>
-                </div>
+                    <div>{this.props.city?this.props.city:"选择"}</div>
+                </Link>
             </div>
         )
     }

@@ -49,7 +49,11 @@ export default {
         return {type:Types.SET_LIST_TYPE,listType:type}
     },
     resetAPI(){
-        return {type:Types.RESET_INFO}
+        let provience=[];
+        for (let key in jsonInfo){
+            provience.push({name:jsonInfo[key].name,id:key})
+        }
+        return {type:Types.RESET_INFO,list:provience}
     },
     setCityAPI(city){
        return {type:Types.SET_CITY,city}

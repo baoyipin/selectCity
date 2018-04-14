@@ -12,20 +12,30 @@ export default class CitySelection extends React.Component{
         if (this.props.listType==="provience"){
             this.props.getCityAPI(id);
             this.provience.innerHTML=e.target.innerHTML;
+            this.provience.className+=" active";
             this.props.setListTypeAPI("city")
         }else if (this.props.listType==="city"){
             let city=e.target.innerHTML;
             this.props.getAreaApi(id);
-            this.city.innerHTML=city;
+            //this.city.innerHTML=city;
+            this.city.className+=" active";
             this.props.setListTypeAPI("area");
             this.props.setCityAPI(city);
         }else {
             this.area.innerHTML=e.target.innerHTML;
+            this.area.className+=" active";
             setTimeout(()=> {
                 this.props.history.push("/")
             },500)
         }
 
+    }
+    clickProvience(){
+        this.props.setListTypeAPI("provience");
+        this.props.getProvienceAPI();
+        this.props.resetAPI();
+        this.props.setCityAPI("城市");
+        this.city.className="city";
     }
     render(){
         return (
@@ -33,8 +43,8 @@ export default class CitySelection extends React.Component{
                 <Header>所在地</Header>
                 <div className="container">
                     <div className="listHeader">
-                        <div className="provience" ref={x=>this.provience=x}>省/自治区</div>
-                        <div className="city" ref={x=>this.city=x}>城市</div>
+                        <div className="provience" ref={x=>this.provience=x} onClick={()=>{this.clickProvience()}}>省/自治区</div>
+                        <div className="city" ref={x=>this.city=x}>{this.props.city?this.props.city:"城市"}</div>
                         <div className="area" ref={x=>this.area=x}>区/县</div>
                     </div>
                     <div className="list">
